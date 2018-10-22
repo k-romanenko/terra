@@ -8,6 +8,7 @@
 /.bundle
 .ruby-version
 .ruby-gemset
+.rspec
 
 # Ignore all logfiles and tempfiles.
 /log/*
