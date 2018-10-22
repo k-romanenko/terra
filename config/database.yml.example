@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  username: kirill
+  password: 'password'
+
+development:
+  <<: *default
+  database: terra_development
+
+test:
+  <<: *default
+  database: terra_test
+
+production:
+  <<: *default
+  database: terra_production
+  username: terra
+  password: <%= ENV['TERRA_DATABASE_PASSWORD'] %>
