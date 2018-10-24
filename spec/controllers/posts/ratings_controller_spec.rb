@@ -12,7 +12,7 @@ RSpec.describe Posts::RatingsController, type: :controller do
       }
     end
 
-    context 'success' do
+    context 'when success' do
       before { post :create, params: params }
 
       it 'responds with 200 status' do
@@ -25,8 +25,7 @@ RSpec.describe Posts::RatingsController, type: :controller do
       end
     end
 
-
-    context 'fail' do
+    context 'when fail' do
       let(:invalid_params) do
         {
           post_id: users_post.id,

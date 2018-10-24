@@ -10,7 +10,7 @@ RSpec.describe PostsController, type: :controller do
       }
     end
 
-    context 'success' do
+    context 'when success' do
       let(:json_attributes) { %w[title body author_ip login created_at updated_at] }
 
       before { post :create, params: params }
@@ -25,8 +25,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-
-    context 'fail' do
+    context 'when fail' do
       let(:invalid_params) do
         {
           body: 'Test post body',

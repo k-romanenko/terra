@@ -18,13 +18,13 @@ RSpec.describe PostForm, type: :model do
       }
     end
 
-    context 'valid' do
+    context 'with valid attributes' do
       let(:attributes) { base_attributes }
 
       it { is_expected.to be_valid }
     end
 
-    context 'invalid login' do
+    context 'with invalid login' do
       let(:attributes) { base_attributes.merge(login: '') }
 
       it { is_expected.to be_invalid }

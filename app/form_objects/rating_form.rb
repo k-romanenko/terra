@@ -10,12 +10,12 @@ class RatingForm
   validates :post_id, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
   validate :validate_post_presence
 
-
   private
 
   def validate_post_presence
     post = Post.find_by(id: post_id)
     return true if post
+
     errors.add(:base, :post_blank)
     false
   end

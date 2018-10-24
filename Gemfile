@@ -17,7 +17,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'virtus'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri]
   gem 'rspec-its'
   gem 'rspec-rails'
 end
@@ -29,8 +29,12 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails'
-  gem 'shoulda-matchers'
-  gem 'faker'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pronto', '~> 0.9.5', require: false
+  gem 'pronto-brakeman', require: false
+  gem 'pronto-rubocop', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'shoulda-matchers'
 end
