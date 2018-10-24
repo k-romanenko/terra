@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostCreator do
+RSpec.describe CreatePost do
   describe '#call' do
     subject(:creator) { described_class.new(attributes) }
 

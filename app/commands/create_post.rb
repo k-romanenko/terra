@@ -1,4 +1,4 @@
-class PostCreator
+class CreatePost
   def initialize(post_params)
     @login = post_params.delete(:login)
     @post_params = post_params

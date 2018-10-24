@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def create
     if form_object.valid?
-      post = ::PostCreator.new(form_object.attributes).call
+      post = ::CreatePost.new(form_object.attributes).call
       render json: post, status: :ok
     else
       render json: { errors: form_object.errors.full_messages }, status: :unprocessable_entity

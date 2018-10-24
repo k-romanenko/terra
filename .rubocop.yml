@@ -1,0 +1,75 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.4.4
+  Exclude:
+  - 'bin/**/*'
+  - 'db/seeds/'
+  - 'db/views/'
+  - 'db/seeds.rb'
+  - 'db/schema.rb'
+  - 'vendor/**/*'
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented_relative_to_receiver
+
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+  - 'config/routes.rb'
+  - 'spec/**/*'
+  - 'Gemfile'
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Style/MissingRespondToMissing:
+  Exclude:
+  - 'spec/**/*'
+
+Style/MethodMissingSuper:
+  Exclude:
+  - 'spec/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+### RAILS SUPPORT ###
+
+Rails:
+  Enabled: true
+
+Rails/UnknownEnv:
+  Environments:
+  - production
+  - development
+  - test
+
+Rails/SkipsModelValidations:
+  Exclude:
+  - 'spec/'
+
+### RSPEC SUPPORT ###
+
+RSpec:
+  Enabled: true
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
