@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  activemodel:
+    errors:
+      models:
+        rating_form:
+          attributes:
+            base:
+              post_blank: Post not found
