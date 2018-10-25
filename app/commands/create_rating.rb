@@ -4,19 +4,29 @@ class CreateRating
   end
 
   def call
-    ::Rating.transaction do
-      creat_rating
-      average_post_rating
-    end
+    rating
+    average_post_rating
   end
 
   private
 
-  def creat_rating
-    ::Rating.create(@attributes)
+  def rating
+    @rating ||= ::Rating.create(@attributes)
   end
 
   def average_post_rating
-    ::Rating.where(post_id: @attributes[:post_id]).average(:value)
+    post = update_post
+    post.rating_average
+  rescue ActiveRecord::StaleObjectError
+    retry
+  end
+
+  def update_post
+    ::Post.transaction do
+      post = ::Post.find(@attributes[:post_id])
+      post.update(rating_sum: post.rating_sum + rating.value)
+      post.increment(:rating_count)
+      post
+    end
   end
 end

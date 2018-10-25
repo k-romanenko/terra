@@ -28,6 +28,7 @@ RSpec.describe CreateRating do
         create(:rating, value: value1, post: post)
         create(:rating, value: value2, post: post)
         create(:rating, value: value3, post: post)
+        post.update(rating_sum: value1 + value2 + value3, rating_count: 3)
       end
 
       it { expect(creator.call).to eq average }
