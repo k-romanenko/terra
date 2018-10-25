@@ -24,8 +24,9 @@ class CreateRating
   def update_post
     ::Post.transaction do
       post = ::Post.find(@attributes[:post_id])
-      post.update(rating_sum: post.rating_sum + rating.value)
+      post.rating_sum += rating.value
       post.increment(:rating_count)
+      post.save
       post
     end
   end

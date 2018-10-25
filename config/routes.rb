@@ -4,4 +4,6 @@ Rails.application.routes.draw do
       resources :ratings, only: :create
     end
   end
+
+  resources :top_posts, only: :index
 end
