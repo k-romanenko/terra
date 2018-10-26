@@ -10,21 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_085508) do
+ActiveRecord::Schema.define(version: 2018_10_22_153810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.string "author_ip"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "author_ip", null: false
+    t.string "login", null: false
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "rating_sum", default: 0, null: false
     t.integer "rating_count", default: 0, null: false
+    t.decimal "rating_avg", default: "0.0", null: false
     t.integer "lock_version", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_ip", "login"], name: "index_posts_on_author_ip_and_login"
+    t.index ["rating_avg"], name: "index_posts_on_rating_avg"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -40,6 +44,7 @@ ActiveRecord::Schema.define(version: 2018_10_25_085508) do
     t.string "login"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
 
   add_foreign_key "posts", "users"

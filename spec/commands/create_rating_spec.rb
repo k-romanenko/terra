@@ -5,7 +5,7 @@ RSpec.describe CreateRating do
     subject(:creator) { described_class.new(attributes) }
 
     let(:user) { create(:user) }
-    let(:post) { create(:post, user: user) }
+    let(:post) { create(:post, user: user, login: user.login) }
 
     let(:value1) { rand(1..5) }
     let(:value2) { rand(1..5) }

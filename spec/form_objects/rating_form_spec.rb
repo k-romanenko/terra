@@ -8,7 +8,7 @@ RSpec.describe RatingForm, type: :model do
     subject(:form_objects) { described_class.new(attributes) }
 
     let(:user) { create(:user) }
-    let(:post) { create(:post, user: user) }
+    let(:post) { create(:post, user: user, login: user.login) }
 
     let(:base_attributes) do
       {

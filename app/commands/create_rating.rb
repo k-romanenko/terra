@@ -16,7 +16,7 @@ class CreateRating
 
   def average_post_rating
     post = update_post
-    post.rating_average
+    post.rating_avg
   rescue ActiveRecord::StaleObjectError
     retry
   end
@@ -26,6 +26,7 @@ class CreateRating
       post = ::Post.find(@attributes[:post_id])
       post.rating_sum += rating.value
       post.increment(:rating_count)
+      post.rating_avg = post.rating_sum.to_d / post.rating_count
       post.save
       post
     end

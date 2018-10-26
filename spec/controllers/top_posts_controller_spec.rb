@@ -4,11 +4,11 @@ RSpec.describe TopPostsController, type: :controller do
   describe '#index' do
     let(:user) { create(:user) }
 
-    let(:users_post1) { create(:post, user: user) }
-    let(:users_post2) { create(:post, user: user) }
-    let(:users_post3) { create(:post, user: user) }
-    let(:users_post4) { create(:post, user: user) }
-    let(:users_post5) { create(:post, user: user) }
+    let(:users_post1) { create(:post, user: user, login: user.login) }
+    let(:users_post2) { create(:post, user: user, login: user.login) }
+    let(:users_post3) { create(:post, user: user, login: user.login) }
+    let(:users_post4) { create(:post, user: user, login: user.login) }
+    let(:users_post5) { create(:post, user: user, login: user.login) }
 
     let(:value1) { 5 }
     let(:value2) { 2 }
@@ -24,11 +24,11 @@ RSpec.describe TopPostsController, type: :controller do
 
     before do
       stub_const('TopPostsController::DEFAULT_COUNT', 4)
-      users_post1.update(rating_sum: value1, rating_count: 1)
-      users_post2.update(rating_sum: value2, rating_count: 1)
-      users_post3.update(rating_sum: value3, rating_count: 1)
-      users_post4.update(rating_sum: value4, rating_count: 1)
-      users_post5.update(rating_sum: value5, rating_count: 1)
+      users_post1.update(rating_sum: value1, rating_count: 1, rating_avg: value1)
+      users_post2.update(rating_sum: value2, rating_count: 1, rating_avg: value2)
+      users_post3.update(rating_sum: value3, rating_count: 1, rating_avg: value3)
+      users_post4.update(rating_sum: value4, rating_count: 1, rating_avg: value4)
+      users_post5.update(rating_sum: value5, rating_count: 1, rating_avg: value5)
 
       get :index, params: params
     end
@@ -41,14 +41,17 @@ RSpec.describe TopPostsController, type: :controller do
       let(:result) do
         [
           {
+            'id' => users_post1.id,
             'title' => users_post1.title,
             'body' => users_post1.body
           },
           {
+            'id' => users_post3.id,
             'title' => users_post3.title,
             'body' => users_post3.body
           },
           {
+            'id' => users_post4.id,
             'title' => users_post4.title,
             'body' => users_post4.body
           }
@@ -66,18 +69,22 @@ RSpec.describe TopPostsController, type: :controller do
       let(:result) do
         [
           {
+            'id' => users_post1.id,
             'title' => users_post1.title,
             'body' => users_post1.body
           },
           {
+            'id' => users_post3.id,
             'title' => users_post3.title,
             'body' => users_post3.body
           },
           {
+            'id' => users_post4.id,
             'title' => users_post4.title,
             'body' => users_post4.body
           },
           {
+            'id' => users_post2.id,
             'title' => users_post2.title,
             'body' => users_post2.body
           }

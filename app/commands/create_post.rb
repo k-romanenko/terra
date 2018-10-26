@@ -1,6 +1,6 @@
 class CreatePost
   def initialize(post_params)
-    @login = post_params.delete(:login)
+    @login = post_params[:login]
     @post_params = post_params
   end
 

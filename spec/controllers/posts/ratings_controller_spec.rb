@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Posts::RatingsController, type: :controller do
   describe '#create' do
     let(:user) { create(:user) }
-    let(:users_post) { create(:post, user: user) }
+    let(:users_post) { create(:post, user: user, login: user.login) }
     let(:value) { rand(1..5) }
     let(:params) do
       {

@@ -2,10 +2,15 @@ class Post < ApplicationRecord
   belongs_to :user, dependent: :destroy
 
   scope :top_rated, ->(count) do
-    select('title, body, (rating_sum / rating_count) as rating_average').order('rating_average desc').limit(count.to_i)
+    select('id, title, body, rating_avg')
+      .order('rating_avg desc')
+      .limit(count.to_i)
   end
 
-  def rating_average
-    rating_sum.to_d / rating_count
+  scope :user_ips, ->(count) do
+    select('posts.author_ip, array_agg(distinct(posts.login)) as logins')
+      .limit(count.to_i)
+      .group(:author_ip)
+      .having('COUNT(posts.login) > 1')
   end
 end
